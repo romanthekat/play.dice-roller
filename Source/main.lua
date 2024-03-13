@@ -10,7 +10,7 @@ local newRoll = false
 local rollCount = 0
 local roll = 0
 local prevRoll = 0
-local rollLine = ""
+local prevRollsLine = ""
 local total = 0
 
 -- view
@@ -61,12 +61,12 @@ function playdate.update()
 
    if needRefresh then
       if newRoll and prevRoll > 0 then
-         rollLine = prevRoll .. " " .. rollLine --todo: truncate excess line
+         prevRollsLine = prevRoll .. " " .. prevRollsLine --todo: truncate excess line
          newRoll = false
       end
       
       text[1] = prepareDiceLine(diceIndex)
-      text[2] = "roll(x" .. rollCount .. "): [" .. roll .. "] " .. rollLine
+      text[2] = "roll(x" .. rollCount .. "): [" .. roll .. "] " .. prevRollsLine
       text[3] = "sum: " .. total
       text[4] = "two max: " .. math.max(roll, prevRoll)
       text[5] = "two min: " .. math.min(roll, prevRoll)
@@ -88,13 +88,21 @@ function playdate.update()
 end
 
 function handleContiniousInput(diceIndex)
-   local crankChange = playdate.getCrankChange() 
-   local crankMoved = math.abs(crankChange) > crankStepPerLine
+   if not playdate.isCrankDocked() then
+      local crankChange = playdate.getCrankChange() 
+      local crankMoved = math.abs(crankChange) > crankStepPerLine
+      if crankMoved and crankChange < 0 then
+         diceIndex -= 1
+      end
+      if crankMoved and crankChange > 0 then
+          diceIndex += 1
+      end
+   end
    
-   if playdate.buttonJustPressed(playdate.kButtonLeft) or (crankMoved and crankChange < 0) then
+   if playdate.buttonJustPressed(playdate.kButtonLeft) then
       diceIndex -= 1
    end
-   if playdate.buttonJustPressed(playdate.kButtonRight) or (crankMoved and crankChange > 0) then
+   if playdate.buttonJustPressed(playdate.kButtonRight) then
        diceIndex += 1
    end
    
@@ -118,21 +126,23 @@ end
 
 function playdate.AButtonDown()
    newRoll = true
+   needRefresh = true
+   
    rollCount += 1
    prevRoll = roll
    roll = math.random(1, dices[diceIndex])
    
    total += roll
-   needRefresh = true
 end
 
 function playdate.BButtonDown()
+   needRefresh = true
+   
    rollCount = 0
    roll = 0
    prevRoll = 0
    total = 0
-   rollLine = ""
-   needRefresh = true
+   prevRollsLine = ""
 end
 
 function playdate.gameWillTerminate()
