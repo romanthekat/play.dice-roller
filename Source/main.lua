@@ -14,7 +14,7 @@ local prevRollsLine = ""
 local total = 0
 
 -- view
--- playdate.display.setRefreshRate(20)
+playdate.display.setRefreshRate(20)
 
 gfx = playdate.graphics
 font = gfx.font.new('fonts/Roobert/Roobert-20-Medium-table-32-32.png')   
@@ -76,41 +76,26 @@ function playdate.update()
       drawText(text, 1)
       needRefresh = false
    end
-   
-   local newdiceIndex = handleContiniousInput(diceIndex)
-   if newdiceIndex ~= diceIndex then 
-      diceIndex = newdiceIndex
-      needRefresh = true
-   end
 
     -- gfx.sprite.update()
     -- playdate.timer.updateTimers()
 end
 
-function handleContiniousInput(diceIndex)
-   if playdate.buttonJustPressed(playdate.kButtonLeft) then
-      diceIndex -= 1
+function playdate.leftButtonDown()
+   needRefresh = true
+   diceIndex -= 1
+   if diceIndex <= 0 then
+       diceIndex = 1
    end
-   if playdate.buttonJustPressed(playdate.kButtonRight) then
-       diceIndex += 1
-   end
-   
+end
+
+
+function playdate.rightButtonDown()
+   needRefresh = true
+   diceIndex += 1
    if diceIndex > #dices then
        diceIndex = #dices
    end
-   if diceIndex <= 0 then
-       diceIndex = 1
-   end	 
-   
-   return diceIndex
-end
-
-function playdate.upButtonUp()
-
-end
-
-function playdate.downButtonUp()
-
 end
 
 function playdate.AButtonDown()
