@@ -68,10 +68,8 @@ function playdate.update()
    text[1] = prepareDiceLine(diceIndex)
    text[2] = "rolls(x" .. rollCount .. "): [" .. roll .. "] " .. prevRollsLine
    text[3] = "sum: " .. total
-   text[4] = "two max: " .. math.max(roll, prevRoll)
-   text[5] = "two min: " .. math.min(roll, prevRoll)
-   text[6] = "two sum: " .. roll + prevRoll
-   text[7] = "two sub: " .. prevRoll - roll
+   text[4] = "two max: " .. math.max(roll, prevRoll) .. ", min: " .. math.min(roll, prevRoll)
+   text[5] = "       sum: " .. roll + prevRoll .. ", sub: " .. prevRoll - roll
       
    drawText(text, 1)
    
