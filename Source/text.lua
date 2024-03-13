@@ -1,9 +1,7 @@
 screenWidth, screenHeight = playdate.display.getSize()
 
 linesPerScreen = 11
-extraScrollLines = 4
-
-local lineHeight = 32
+local lineHeight = 32 --todo: extract from font information
 
 --- Draws an arbitrary text, starting with line number
 function drawText(text, lineNumber)
@@ -16,7 +14,6 @@ function drawText(text, lineNumber)
 			local x = 2
 			local y = (screenLine-1)*lineHeight
 				
-			-- printedLength, printedHeight = gfx.drawTextInRect(line, x, y, 400, 240) 
 			printedLength, printedHeight = gfx.drawText(line, x, y) 
 				
 			-- if more than 1 line were drawn, ideally shouldn't happen ever, get rid of this logic?

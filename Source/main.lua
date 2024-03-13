@@ -60,19 +60,18 @@ function playdate.update()
    -- playdate.drawFPS(385, 0) 
 
    if needRefresh then
-      local diceLine = prepareDiceLine(diceIndex)
       if newRoll and prevRoll > 0 then
          rollLine = prevRoll .. " " .. rollLine --todo: truncate excess line
          newRoll = false
       end
       
-      text[1] = diceLine
+      text[1] = prepareDiceLine(diceIndex)
       text[2] = "roll(" .."x" .. rollCount .. "): " .. "[" .. roll .. "] " .. rollLine
       text[3] = "sum: " .. total
-      text[4] = "two sum: " .. roll + prevRoll
-      text[5] = "two sub: " .. roll - prevRoll
-      text[6] = "two max: " .. math.max(roll, prevRoll)
-      text[7] = "two min: " .. math.min(roll, prevRoll)
+      text[4] = "two max: " .. math.max(roll, prevRoll)
+      text[5] = "two min: " .. math.min(roll, prevRoll)
+      text[6] = "two sum: " .. roll + prevRoll
+      text[7] = "two sub: " .. prevRoll - roll
       
       drawText(text, 1)
       needRefresh = false
@@ -84,7 +83,6 @@ function playdate.update()
       needRefresh = true
    end
 
-    
     -- gfx.sprite.update()
     -- playdate.timer.updateTimers()
 end
