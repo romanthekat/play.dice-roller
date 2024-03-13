@@ -88,17 +88,6 @@ function playdate.update()
 end
 
 function handleContiniousInput(diceIndex)
-   if not playdate.isCrankDocked() then
-      local crankChange = playdate.getCrankChange() 
-      local crankMoved = math.abs(crankChange) > crankStepPerLine
-      if crankMoved and crankChange < 0 then
-         diceIndex -= 1
-      end
-      if crankMoved and crankChange > 0 then
-          diceIndex += 1
-      end
-   end
-   
    if playdate.buttonJustPressed(playdate.kButtonLeft) then
       diceIndex -= 1
    end
