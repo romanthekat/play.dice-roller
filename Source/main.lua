@@ -58,12 +58,15 @@ function playdate.update()
    -- playdate.drawFPS(385, 0) 
 
    if newRoll and prevRoll > 0 then
-      prevRollsLine = prevRoll .. " " .. prevRollsLine --todo: truncate excess line
+      if #prevRollsLine > 16 then
+         prevRollsLine = string.sub(prevRollsLine, 1, 16)
+      end 
+      prevRollsLine = prevRoll .. " " .. prevRollsLine 
       newRoll = false
    end
       
    text[1] = prepareDiceLine(diceIndex)
-   text[2] = "roll(x" .. rollCount .. "): [" .. roll .. "] " .. prevRollsLine
+   text[2] = "rolls(x" .. rollCount .. "): [" .. roll .. "] " .. prevRollsLine
    text[3] = "sum: " .. total
    text[4] = "two max: " .. math.max(roll, prevRoll)
    text[5] = "two min: " .. math.min(roll, prevRoll)
