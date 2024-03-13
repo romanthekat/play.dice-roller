@@ -1,5 +1,5 @@
 # play.dice-roller
-Simple dice roller app for playdate.
+Simple dice roller app for [playdate](https://play.date/).
 
 ![example](./docs/example.gif)
 
@@ -9,6 +9,6 @@ Simple dice roller app for playdate.
 - last two rolls: min/max and sum/sub
 
 ## controls
-a/d: select dice  
+left/right: select dice  
 a: roll dice  
 b: clear  
