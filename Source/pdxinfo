@@ -1,0 +1,7 @@
+name=play.dice-roller
+author=RomanTheKat
+description=Simple dice roller app for playdate
+bundleID=net.romangaranin.play.dice-roller
+version=1.0
+buildNumber=100
+imagePath=SystemAssets
