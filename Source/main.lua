@@ -14,7 +14,7 @@ local prevRollsLine = ""
 local total = 0
 
 -- view
-playdate.display.setRefreshRate(20)
+-- playdate.display.setRefreshRate(30)
 
 gfx = playdate.graphics
 font = gfx.font.new('fonts/Roobert/Roobert-20-Medium-table-32-32.png')   
@@ -76,6 +76,9 @@ function playdate.update()
       drawText(text, 1)
       needRefresh = false
    end
+   
+   playdate.stop()
+   playdate.display.flush()
 
     -- gfx.sprite.update()
     -- playdate.timer.updateTimers()
@@ -87,6 +90,8 @@ function playdate.leftButtonDown()
    if diceIndex <= 0 then
        diceIndex = 1
    end
+   
+   playdate.start()
 end
 
 
@@ -96,6 +101,8 @@ function playdate.rightButtonDown()
    if diceIndex > #dices then
        diceIndex = #dices
    end
+   
+   playdate.start()
 end
 
 function playdate.AButtonDown()
@@ -107,6 +114,8 @@ function playdate.AButtonDown()
    roll = math.random(1, dices[diceIndex])
    
    total += roll
+   
+   playdate.start()
 end
 
 function playdate.BButtonDown()
@@ -117,6 +126,8 @@ function playdate.BButtonDown()
    prevRoll = 0
    total = 0
    prevRollsLine = ""
+   
+   playdate.start()
 end
 
 function playdate.gameWillTerminate()
