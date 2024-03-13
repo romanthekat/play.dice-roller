@@ -3,5 +3,5 @@ author=RomanTheKat
 description=Simple dice roller app for playdate
 bundleID=net.romangaranin.play.dice-roller
 version=1.4
-buildNumber=105
+buildNumber=106
 imagePath=SystemAssets
