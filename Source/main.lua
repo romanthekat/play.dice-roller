@@ -101,13 +101,13 @@ function playdate.rightButtonDown()
 end
 
 function playdate.upButtonDown()
-   diceIndex = 3 --d6
+   diceIndex = 7 --d20
    
    playdate.start()
 end
 
 function playdate.downButtonDown()
-   diceIndex = 7 --d20
+   diceIndex = 3 --d6
    
    playdate.start()
 end
