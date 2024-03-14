@@ -4,7 +4,7 @@ import 'text'
 
 ---- initialisation
 local dices = {2, 4, 6, 8, 10, 12, 20, 100}
-local diceIndex = 3
+local diceIndex = 3 --d6
 
 local newRoll = false
 local roll = 0
@@ -84,7 +84,7 @@ end
 function playdate.leftButtonDown()
    diceIndex -= 1
    if diceIndex <= 0 then
-       diceIndex = 1
+       diceIndex = #dices
    end
    
    playdate.start()
@@ -94,8 +94,20 @@ end
 function playdate.rightButtonDown()
    diceIndex += 1
    if diceIndex > #dices then
-       diceIndex = #dices
+       diceIndex = 1
    end
+   
+   playdate.start()
+end
+
+function playdate.upButtonDown()
+   diceIndex = 3 --d6
+   
+   playdate.start()
+end
+
+function playdate.downButtonDown()
+   diceIndex = 7 --d20
    
    playdate.start()
 end
