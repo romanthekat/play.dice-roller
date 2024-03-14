@@ -10,5 +10,8 @@ Simple dice roller app for [playdate](https://play.date/).
 
 ## controls
 left/right: select dice  
+up: select d20
+down: select d6
 a: roll dice  
 b: clear  
+
