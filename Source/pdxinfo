@@ -1,7 +1,7 @@
-name=play.dice-roller
+name=Dice Roller
 author=RomanTheKat
 description=Simple dice roller app for playdate
 bundleID=net.romangaranin.play.dice-roller
 version=1.6
-buildNumber=111
+buildNumber=114
 imagePath=SystemAssets
