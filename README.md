@@ -1,6 +1,7 @@
 # play.dice-roller
 Simple dice roller app for [playdate](https://play.date/).
 
+![animation](./docs/animation.gif)
 ![example](./docs/example.gif)
 
 ## features
